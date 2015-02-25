@@ -43,7 +43,7 @@ var thetaLoc;
 
 var flag = true;
 
-function quad(a, b, c, d) {
+function tri(a, b, c ) {
 
      var t1 = subtract(vertices[b], vertices[a]);
      var t2 = subtract(vertices[c], vertices[b]);
@@ -61,21 +61,21 @@ function quad(a, b, c, d) {
      normalsArray.push(normal); 
      pointsArray.push(vertices[c]); 
      normalsArray.push(normal); 
-     pointsArray.push(vertices[d]); 
+     pointsArray.push(vertices[b]); 
      normalsArray.push(normal);    
 }
 
 
 function colorCube()
 {
-	quad( 5, 1, 0, 5 );
-	quad( 5, 2, 1, 5 );
-    quad( 1, 4, 2, 1 );
-    quad( 1, 0, 4, 1 );
-    quad( 4, 0, 3, 4 );
-    quad( 4, 3, 2, 4 );
-    quad( 3, 5, 2, 3 );
-    quad( 3, 0, 5, 3 );
+	tri( 5, 1, 0 );
+	tri( 5, 2, 1 );
+    tri( 1, 4, 2 );
+    tri( 1, 0, 4 );
+    tri( 4, 0, 3 );
+    tri( 4, 3, 2 );
+    tri( 3, 5, 2 );
+    tri( 3, 0, 5 );
 	
 }
 
