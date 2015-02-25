@@ -34,8 +34,10 @@ var program;
 var xAxis = 0;
 var yAxis = 1;
 var zAxis = 2;
-var axis = 0;
+var axis = flag;
 var theta =[0, 0, 0];
+
+var check = 0;
 
 var thetaLoc;
 
@@ -122,11 +124,6 @@ window.onload = function init() {
     ambientProduct = mult(lightAmbient, materialAmbient);
     diffuseProduct = mult(lightDiffuse, materialDiffuse);
     specularProduct = mult(lightSpecular, materialSpecular);
-
-    document.getElementById("ButtonX").onclick = function(){axis = xAxis;};
-    document.getElementById("ButtonY").onclick = function(){axis = yAxis;};
-    document.getElementById("ButtonZ").onclick = function(){axis = zAxis;};
-    document.getElementById("ButtonT").onclick = function(){flag = !flag;};
 	
 	document.onkeydown = handleKeyDown;
     document.onkeyup = handleKeyUp;
@@ -152,13 +149,21 @@ window.onload = function init() {
 var render = function(){
             
     gl.clear( gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
-            
-    if(flag) theta[axis] += 2.0;
+     
+	if(flag)
+	{  
+		if(check == 0)
+		{        
+			theta[axis] += 2.0;
+		} else if(check == 1)
+		{
+			theta[axis] -= 2.0;
+		}
+	}
             
     modelView = mat4();
     modelView = mult(modelView, rotate(theta[xAxis], [1, 0, 0] ));
     modelView = mult(modelView, rotate(theta[yAxis], [0, 1, 0] ));
-    modelView = mult(modelView, rotate(theta[zAxis], [0, 0, 1] ));
     
     gl.uniformMatrix4fv( gl.getUniformLocation(program,
             "modelViewMatrix"), false, flatten(modelView) );
@@ -177,19 +182,24 @@ function handleKeyDown(event) {
 
     if (event.keyCode == 37) 
 	{
-    	axis = xAxis;  
+		check = 1;
+    	axis = yAxis;  
     } else if (event.keyCode == 38) 
 	{
-    	axis = yAxis;  
+		check = 1;
+    	axis = xAxis;  
     } else if (event.keyCode == 39) 
 	{
-    	axis = zAxis;  
+		check = 0;
+    	axis = yAxis;  
     } else if (event.keyCode == 40) 
 	{
-    	flag = !flag;  
+		check = 0;
+    	axis = xAxis;  
     }			
 }
 
 function handleKeyUp(event) {
     currentlyPressedKeys[event.keyCode] = false;
+	axis = flag;
 }
