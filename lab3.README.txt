@@ -1,4 +1,6 @@
 Luke Shaw, 2/25/2015, 
 
-Using the spinning cube as a reference I worked the math out to find hte points of a new 3d image and rendered it in a 3D space
-using 
+Using the spinning cube as a reference I worked the math out to find the points of a new 3d image and rendered it in a 3D space
+using document.onkeyup and down to check for keyboard input which called a function allowing the orientation of the shape to be 
+changed. The object was shading using a custom function called tri which took account of the vertices and worked out the math 
+taking the inputs of various vertices in the shapes to create a properly shaded 3 dimensional object.
