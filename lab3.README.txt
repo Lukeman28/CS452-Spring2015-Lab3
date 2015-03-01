@@ -1,1 +1,4 @@
-Luke Shaw, 2/25/2015, description
+Luke Shaw, 2/25/2015, 
+
+Using the spinning cube as a reference I worked the math out to find hte points of a new 3d image and rendered it in a 3D space
+using 
